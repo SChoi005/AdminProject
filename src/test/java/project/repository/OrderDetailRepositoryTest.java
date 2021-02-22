@@ -1,0 +1,38 @@
+package project.repository;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.math.BigDecimal;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import project.ApplicationTests;
+import project.model.entity.OrderDetail;
+
+public class OrderDetailRepositoryTest extends ApplicationTests{
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+    
+    //@Test
+    public void create(){
+        OrderDetail orderDetail = new OrderDetail();
+        
+        orderDetail.setStatus("WAITING");
+        orderDetail.setArrivalDate(LocalDateTime.now().plusDays(2));
+        orderDetail.setQuantity(1);
+        orderDetail.setTotalPrice(BigDecimal.valueOf(900000));
+        //orderDetail.setOrderGroupId(1L); //어떤 장바구니에
+        //orderDetail.setItemId(1L); //어떠한 상품
+        orderDetail.setCreatedAt(LocalDateTime.now());
+        orderDetail.setCreatedBy("AdminServer");
+        
+        
+        OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
+        
+        Assert.assertNotNull(newOrderDetail);
+    }
+}

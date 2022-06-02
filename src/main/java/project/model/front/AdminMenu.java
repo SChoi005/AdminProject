@@ -7,6 +7,12 @@ public class AdminMenu {
     private String code;
     
     public AdminMenu() {}
+    public AdminMenu(String title, String url, String code){
+        this.title=title;
+        this.url=url;
+        this.code=code;
+    }
+    
     
     public String getTitle(){return title;}
     public String getUrl(){return url;}

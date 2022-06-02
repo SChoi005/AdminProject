@@ -180,4 +180,8 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         
         return Header.OK(userOrderInfoApiResponse);
     }
+    
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
 }

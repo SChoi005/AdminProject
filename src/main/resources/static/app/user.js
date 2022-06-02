@@ -83,7 +83,7 @@
             //전체 페이지
             showPage.totalElements = pagination.current_elements;
             showPage.currentPage = pagination.current_page+1;
-
+            showPage.totalPages = pagination.total_pages;
 
             // 검색 데이터
             itemList.itemList = response.data;

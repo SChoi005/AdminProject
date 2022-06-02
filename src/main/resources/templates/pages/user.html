@@ -36,7 +36,7 @@
 
         <section class="content">
 
-            <!--<div class="row">
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="box box-danger">
                         <div class="box-header with-border">
@@ -45,12 +45,12 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <label for="email">Email</label>
-                                    <input id="email" type="text" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="col-xs-3">
                                     <label for="account">Account</label>
                                     <input id="account" type="text" class="form-control" placeholder="Account">
+                                </div>
+                                <div class="col-xs-3">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="text" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="col-xs-3">
                                     <label for="phoneNumber">PhoneNumber</label>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-            </div>--><!-- row end-->
+            </div>
 
             <div class="row">
                 <div class="col-xs-12">
@@ -130,7 +130,7 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div id="showPage" class="dataTables_info" role="status" aria-live="polite">
-                                            Showing {{currentPage}} to 10 of {{totalElements}} entries
+                                            Showing {{currentPage}} to {{totalPages}} of {{totalElements}} entries
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
@@ -173,7 +173,7 @@
     <div class="control-sidebar-bg"></div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="/app/user.js"></script>
 </body>
 </html>

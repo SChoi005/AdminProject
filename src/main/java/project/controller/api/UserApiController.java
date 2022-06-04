@@ -34,8 +34,8 @@ public class UserApiController extends CrudController<UserApiRequest, UserApiRes
     }
     
     @GetMapping("/{id}/orderInfo")
-    public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable Long id){
-        return userApiLogicService.orderInfo(id);
+    public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable String id){
+        return userApiLogicService.orderInfo(Long.parseLong(id));
     }
     // @Autowired
     // private UserApiLogicService userApiLogicService;

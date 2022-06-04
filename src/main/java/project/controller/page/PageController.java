@@ -33,4 +33,12 @@ public class PageController {
                 .addObject("code", "user")
                 ;
     }
+    
+    @RequestMapping("/order")
+    public ModelAndView order(){
+        return new ModelAndView("pages/order")
+                .addObject("menuList", adminMenuService.getAdminMenu())
+                .addObject("code", "order")
+                ;
+    }
 }

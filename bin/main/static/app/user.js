@@ -17,7 +17,8 @@
         el : '#showPage',
         data : {
             totalElements : {},
-            currentPage:{}
+            currentPage:{},
+            totalPages:{}
         }
     });
 

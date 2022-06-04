@@ -17,7 +17,8 @@
         el : '#showPage',
         data : {
             totalElements : {},
-            currentPage:{}
+            currentPage:{},
+            totalPages:{}
         }
     });
 
@@ -64,6 +65,7 @@
 
     $('#search').click(function () {
         searchStart(0)
+        console.log("ENFNFNFN")
     });
 
     $(document).ready(function () {

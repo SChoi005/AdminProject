@@ -64,10 +64,68 @@
 
 
     $('#search').click(function () {
-        searchStart(0)
-        console.log("ENFNFNFN")
+        var account = document.getElementById("account");
+        console.log(account.value)
+        searchByAccount(account.value, event)
     });
 
+    function searchByAccount(account, e) {
+        e.preventDefault();
+        
+        $.get("/api/user/account/"+account,function(response){
+            /* 데이터 셋팅 */
+            // 페이징 처리 데이터
+            indexBtn = [];
+            pagination = response.pagination;
+
+
+            //전체 페이지
+            showPage.totalElements = pagination.current_elements;
+            showPage.currentPage = pagination.current_page;
+            showPage.totalPages = pagination.total_pages;
+
+            // 검색 데이터
+            itemList.itemList = response.data;
+
+
+            // 이전버튼
+            if(pagination.current_page === 1){
+                $('#previousBtn').addClass("disabled")
+            }else{
+                $('#previousBtn').removeClass("disabled")
+            }
+
+
+            // 다음버튼
+            if(pagination.current_page === pagination.total_pages){
+                $('#nextBtn').addClass("disabled")
+            }else{
+                $('#nextBtn').removeClass("disabled")
+            }
+
+            // 페이징 버튼 처리
+            var temp = Math.floor(pagination.current_page / maxBtnSize);
+            for(var i = 1; i <= maxBtnSize; i++){
+                var value = i+(temp*maxBtnSize);
+
+                if(value <= pagination.total_pages){
+                    indexBtn.push(value)
+                }
+            }
+
+            // 페이지 버튼 셋팅
+            pageBtnList.btnList = indexBtn;
+
+
+            // 색상처리
+            setTimeout(function () {
+                $('li[btn_id]').removeClass( "active" );
+                $('li[btn_id='+(pagination.current_page+1)+']').addClass( "active" );
+            },50)
+        });
+    }
+    
+    
     $(document).ready(function () {
         searchStart(0)
     });

@@ -33,6 +33,21 @@ public class UserApiController extends CrudController<UserApiRequest, UserApiRes
         return userApiLogicService.search(pageable);
     }
     
+    @GetMapping("/account/{account}")
+    public Header<List<UserApiResponse>> searchByAccount(@PathVariable String account){
+        return userApiLogicService.getUserByAccount(account);
+    }
+    
+    @GetMapping("/email/{email}")
+    public Header<UserApiResponse> searchByEmail(@PathVariable String email){
+        return userApiLogicService.getUserByEmail(email);
+    }
+    
+    @GetMapping("/phonenumber/{phonenumber}")
+    public Header<UserApiResponse> searchByPhoneNumber(@PathVariable String phonenumber){
+        return userApiLogicService.getUserByEmail(phonenumber);
+    }
+    
     @GetMapping("/{id}/orderInfo")
     public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable String id){
         return userApiLogicService.orderInfo(Long.parseLong(id));

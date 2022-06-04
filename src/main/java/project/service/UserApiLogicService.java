@@ -1,6 +1,7 @@
 package project.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -70,6 +71,36 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
             .map(user -> response(user)) //있을때
             .map(userApiResponse->Header.OK(userApiResponse))
             .orElseGet(()->Header.ERROR("데이터없음")); //없을떄      
+    }
+    
+    public Header<List<UserApiResponse>> getUserByAccount(String account){
+        
+        User user = userRepository.findByAccount(account);
+        List<UserApiResponse> users = new ArrayList<>();
+        users.add(response(user));
+        
+        Pagination pagination = new Pagination();
+        
+        pagination.setTotalPages(1);
+        pagination.setTotalElements(1L);
+        pagination.setCurrentPage(1);
+        pagination.setCurrentElements(1);
+        
+        return Header.OK(users,pagination);
+    }
+    
+    public Header<UserApiResponse> getUserByEmail(String email){
+        
+        User user = userRepository.findByEmail(email);
+        
+        return Header.OK(response(user));      
+    }
+    
+    public Header<UserApiResponse> getUserByPhoneNumber(String phoneNumber){
+        
+        User user = userRepository.findByPhoneNumber(phoneNumber);
+        
+        return Header.OK(response(user));           
     }
     
     @Override
@@ -181,7 +212,4 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         return Header.OK(userOrderInfoApiResponse);
     }
     
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
 }

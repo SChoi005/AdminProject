@@ -45,12 +45,12 @@
                                     <div class="box-body">
                                         <div class="row">
                                             <div class="col-xs-3">
-                                                <label for="account">Account</label>
+                                                <label for="account">ID</label>
                                                 <input
-                                                    id="account"
+                                                    id="id"
                                                     type="text"
                                                     class="form-control"
-                                                    placeholder="Account"
+                                                    placeholder="ID"
                                                 />
                                             </div>
                                         </div>
@@ -59,7 +59,6 @@
                                     <div class="box-footer">
                                         <button
                                             id="search"
-                                            type="submit"
                                             class="btn btn-primary bg-light-blue-gradient pull-right"
                                         >
                                             검색
@@ -88,6 +87,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
+                                                <h4>
+                                                    사용자 정보
+                                                </h4>
                                                 <table
                                                     id="example2"
                                                     class="table table-bordered table-hover dataTable"
@@ -154,7 +156,228 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
+                                                    <tbody id="userInfo">
+                                                        <tr role="row" class="odd">
+                                                            <td class="text-center">{{id}}</td>
+                                                            <td class="text-center">
+                                                                {{account}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{status}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{email}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{phone_number}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{registered_at}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{un_registered_at}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
+                                                <h4>
+                                                    주문 내역
+                                                </h4>
+                                                <table
+                                                    id="example2"
+                                                    class="table table-bordered table-hover dataTable"
+                                                    role="grid"
+                                                    aria-describedby="example2_info"
+                                                >
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                id
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                주문날짜
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                도착날짜
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                지불방식
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                상태
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                가격
+                                                            </th>
+                                                            <th
+                                                                class="text-center bg-light-blue-gradient"
+                                                                tabindex="0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                            >
+                                                                수량
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="orderGroupList">
+                                                        <tr
+                                                            role="row" class="odd" v-for="dto in orderGroupList"
+                                                        >
+                                                            <td class="text-center">{{dto.id}}</td>
+                                                            <td class="text-center">
+                                                                {{dto.order_at}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{dto.arrival_date}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{dto.payment_type}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{dto.status}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{dto.total_price}}원
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{dto.total_quantity}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h4>
+                                                    주문 상세 내역
+                                                </h4>
+                                                <div id="orderDetail">
+                                                    <div v-for="dto in orderDetail">
+                                                        <h5>
+                                                            주문내역 Id : {{dto.id}} / 가격 : {{dto.total_price}}원 / 수량 : {{dto.total_quantity}}
+                                                        </h5>
+                                                        <table
+                                                            class="table table-bordered table-hover dataTable"
+                                                            role="grid"
+                                                            aria-describedby="example2_info"
+                                                        >
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        id
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        제품명
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        설명
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        브랜드 명
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        가격
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        제목
+                                                                    </th>
+                                                                    <th
+                                                                        class="text-center bg-light-blue-gradient"
+                                                                        tabindex="0"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                    >
+                                                                        파트너 ID
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr
+                                                                    role="row" class="odd" v-for="d in dto.item_api_response_list"
+                                                                >
+                                                                    <td class="text-center">
+                                                                        {{d.id}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.name}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.content}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.brand_name}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.price}}원
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.title}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{d.partner_id}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -163,8 +386,6 @@
                         </div>
                     </div>
                 </section>
-                
-            
             </div>
 
             <!-- Footer Start -->
@@ -175,7 +396,7 @@
             <!-- controlSidebar End -->
             <div class="control-sidebar-bg"></div>
         </div>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="/app/order.js"></script>

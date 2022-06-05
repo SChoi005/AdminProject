@@ -14,5 +14,6 @@ Admin website allows you to figure out user's account, order lists, and order de
 
 ![image](https://user-images.githubusercontent.com/64727012/172032111-8cc1be96-109f-405d-bddc-b59611eb36eb.png)
 
-* <strong> Order Details
+* <strong> Order Details</strong>
+  
 ![image](https://user-images.githubusercontent.com/64727012/172032128-6bae19f7-c367-44cc-ac5d-b6070e1fcefb.png)
